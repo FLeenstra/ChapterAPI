@@ -1,5 +1,5 @@
 from flask import Flask, request
-import json
+from checks import checkInput
 
 app = Flask(__name__)
 
@@ -7,12 +7,7 @@ app = Flask(__name__)
 def root():
     data = request.data
     #headers = request.headers
-
-    if data:
-        try:
-            jsondata = json.loads(data)
-            return jsondata, 200
-        except:
-            return 'please supply valid json', 400
-    else:
-        return 'please add a json payload', 400
+    
+    result = checkInput(data)
+    return result
+    
