@@ -1,0 +1,20 @@
+FROM python:alpine
+
+#Set working directory
+WORKDIR /code
+
+#Copy requirements
+COPY requirements.txt .
+
+#install requirements
+RUN pip install -r requirements.txt
+
+# copy the content of the local src directory to the working directory
+COPY src/ .
+
+#expose port 80 for use by NGINX
+EXPOSE 80
+
+# command to run on container start
+CMD ["gunicorn", "main:app", "-w", "2", "--threads", "2", "-b", "0.0.0.0:80"]
+ 
