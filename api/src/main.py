@@ -7,7 +7,11 @@ app = Flask(__name__)
 def root():
     data = request.data
     #headers = request.headers
-    
+
     result = checkInput(data)
-    return result
+
+    if result[1] != 200:
+        return result
+    else:
+        return 'kippiyayee', 200
     
