@@ -10,8 +10,9 @@ def root():
 
     result = checkInput(data)
 
+    #return everything which is not ok
     if result[1] != 200:
         return result
     else:
-        return 'kippiyayee', 200
+        return result
     

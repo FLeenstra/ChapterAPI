@@ -1,11 +1,12 @@
-import json
+import xml.etree.ElementTree as ET
 
 def checkInput(data):
     if data: 
         try:
-            jsondata = json.loads(data)
-            return jsondata, 200
+            xmlTree = ET.fromstring(data)
+            xmlstr = ET.tostring(xmlTree, encoding='utf8', method='xml')
+            return xmlstr, 200
         except:
-            return 'please supply valid json', 400
+            return 'please supply valid xml', 400
     else:
-        return 'please add a json payload', 400
+        return 'please add a xml payload', 400
