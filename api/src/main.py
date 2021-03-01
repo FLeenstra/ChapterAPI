@@ -6,9 +6,9 @@ app = Flask(__name__)
 @app.route('/', methods=['POST'])
 def root():
     data = request.data
-    #headers = request.headers
+    headers = request.headers
 
-    result = checkInput(data)
+    result = checkInput(data, headers)
 
     #return everything which is not ok
     if result[1] != 200:
